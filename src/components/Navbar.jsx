@@ -33,7 +33,7 @@ function Navbar() {
       <Container>
         <div className="flex items-center justify-between h-16">
           <a href="#home" className="text-xl font-bold text-text-light dark:text-text-dark">
-            YourName<span className="text-primary dark:text-primary-dark">.</span>
+            Sarah<span className="text-primary dark:text-primary-dark">.</span>
           </a>
 
           <div className="hidden md:flex items-center gap-8">
