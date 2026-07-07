@@ -6,6 +6,7 @@ import ServicesSection from './sections/ServicesSection'
 import ProjectsSection from './sections/ProjectsSection'
 import TestimonialsSection from './sections/TestimonialsSection'
 import TimelineSection from './sections/TimelineSection'
+import ContactSection from './sections/ContactSection'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <ProjectsSection />
       <TestimonialsSection />
       <TimelineSection />
+      <ContactSection />
     </div>
   )
 }
