@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import HeroSection from './sections/HeroSection'
 import AboutSection from './sections/AboutSection'
 import SkillsSection from './sections/SkillsSection'
@@ -20,6 +21,7 @@ function App() {
       <TestimonialsSection />
       <TimelineSection />
       <ContactSection />
+      <Footer />
     </div>
   )
 }
