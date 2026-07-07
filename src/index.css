@@ -1,2 +1,35 @@
-
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --color-bg-light: #FAFAFA;
+  --color-bg-dark: #0A0A0F;
+
+  --color-surface-light: #FFFFFF;
+  --color-surface-dark: #15151D;
+
+  --color-primary: #6366F1;
+  --color-primary-dark: #818CF8;
+
+  --color-accent: #F59E0B;
+  --color-accent-dark: #FBBF24;
+
+  --color-text-light: #111827;
+  --color-text-dark: #F3F4F6;
+
+  --color-muted-light: #6B7280;
+  --color-muted-dark: #9CA3AF;
+}
+
+body {
+  font-family: var(--font-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
