@@ -48,16 +48,24 @@ function ContactSection() {
 
     if (Object.keys(validationErrors).length > 0) return
 
-    setStatus('sending')
+   setStatus('sending')
 
-    try {
-      // This will be connected to our backend in a later step
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      setStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
-    } catch (error) {
-      setStatus('error')
-    }
+try {
+  const response = await fetch('http://localhost:5000/api/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData),
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to send message')
+  }
+
+  setStatus('success')
+  setFormData({ name: '', email: '', subject: '', message: '' })
+} catch (error) {
+  setStatus('error')
+}
   }
 
   return (
