@@ -1,9 +1,11 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FiSearch } from 'react-icons/fi'
 import Section from '../components/Section'
 import ProjectCard from '../components/ProjectCard'
-import { projects, categories } from '../data/projects'
+import api from '../services/api'
+
+const categories = ['All', 'Full Stack', 'Frontend', 'Backend', 'AI/ML']
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -15,8 +17,26 @@ const fadeUp = {
 }
 
 function ProjectsSection() {
+  const [projects, setProjects] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
   const [activeCategory, setActiveCategory] = useState('All')
   const [searchTerm, setSearchTerm] = useState('')
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true)
+        const res = await api.get('/projects')
+        setProjects(res.data.data)
+      } catch (err) {
+        setError('Unable to load projects right now. Please try again later.')
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchProjects()
+  }, [])
 
   const filteredProjects = useMemo(() => {
     return projects.filter((project) => {
@@ -29,7 +49,7 @@ function ProjectsSection() {
         )
       return matchesCategory && matchesSearch
     })
-  }, [activeCategory, searchTerm])
+  }, [projects, activeCategory, searchTerm])
 
   return (
     <Section id="projects">
@@ -86,10 +106,16 @@ function ProjectsSection() {
         </div>
       </motion.div>
 
-      {filteredProjects.length > 0 ? (
+      {loading ? (
+        <p className="text-center text-muted-light dark:text-muted-dark">
+          Loading projects...
+        </p>
+      ) : error ? (
+        <p className="text-center text-red-500">{error}</p>
+      ) : filteredProjects.length > 0 ? (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+            <ProjectCard key={project._id} project={project} index={index} />
           ))}
         </div>
       ) : (
