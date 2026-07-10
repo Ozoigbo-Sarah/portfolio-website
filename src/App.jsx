@@ -10,6 +10,8 @@ import TestimonialsSection from './sections/TestimonialsSection'
 import TimelineSection from './sections/TimelineSection'
 import ContactSection from './sections/ContactSection'
 import AdminLogin from './pages/AdminLogin'
+import DashboardHome from './pages/DashboardHome'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function HomePage() {
   return (
@@ -34,6 +36,14 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardHome />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   )
