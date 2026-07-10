@@ -12,6 +12,7 @@ import ContactSection from './sections/ContactSection'
 import AdminLogin from './pages/AdminLogin'
 import DashboardHome from './pages/DashboardHome'
 import AdminProjects from './pages/AdminProjects'
+import AdminMessages from './pages/AdminMessages'
 import ProtectedRoute from './components/ProtectedRoute'
 
 function HomePage() {
@@ -50,6 +51,14 @@ function App() {
           element={
             <ProtectedRoute>
               <AdminProjects />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/messages"
+          element={
+            <ProtectedRoute>
+              <AdminMessages />
             </ProtectedRoute>
           }
         />

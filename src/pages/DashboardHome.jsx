@@ -11,8 +11,12 @@ function DashboardHome() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const projectsRes = await api.get('/projects')
+        const [projectsRes, messagesRes] = await Promise.all([
+          api.get('/projects'),
+          api.get('/contact'),
+        ])
         setProjectCount(projectsRes.data.data.length)
+        setMessageCount(messagesRes.data.data.length)
       } catch (error) {
         console.error('Failed to fetch stats:', error)
       } finally {
