@@ -11,6 +11,7 @@ import TimelineSection from './sections/TimelineSection'
 import ContactSection from './sections/ContactSection'
 import AdminLogin from './pages/AdminLogin'
 import DashboardHome from './pages/DashboardHome'
+import AdminProjects from './pages/AdminProjects'
 import ProtectedRoute from './components/ProtectedRoute'
 
 function HomePage() {
@@ -41,6 +42,14 @@ function App() {
           element={
             <ProtectedRoute>
               <DashboardHome />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/projects"
+          element={
+            <ProtectedRoute>
+              <AdminProjects />
             </ProtectedRoute>
           }
         />
