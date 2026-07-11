@@ -29,10 +29,10 @@ function Navbar() {
   }
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-md shadow-md' : 'bg-transparent'}`}>
-      <Container>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b ${scrolled ? 'bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-md shadow-md border-muted-light/10 dark:border-muted-dark/10' : 'bg-transparent border-transparent'}`}>
+          <Container>
         <div className="flex items-center justify-between h-16">
-          <a href="#home" className="text-xl font-bold text-text-light dark:text-text-dark">
+          <a href="#home" className="text-lg sm:text-xl font-bold text-text-light dark:text-text-dark flex-shrink-0">
             Sarah<span className="text-primary dark:text-primary-dark">.</span>
           </a>
 

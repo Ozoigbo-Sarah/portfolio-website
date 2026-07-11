@@ -63,13 +63,14 @@ function Footer() {
           <p className="text-sm text-muted-dark">
             © {currentYear} Ozoigbo Sarah. All rights reserved.
           </p>
-          <button
-            onClick={scrollToTop}
-            aria-label="Back to top"
-            className="flex items-center gap-2 text-sm text-muted-dark hover:text-primary-dark transition-colors"
-          >
-            Back to top <FiArrowUp size={16} />
-          </button>
+          <div className="flex items-center gap-4">
+            <a href="/admin/login" className="text-sm text-muted-dark hover:text-primary-dark transition-colors border border-muted-dark/30 hover:border-primary-dark px-3 py-1.5 rounded-lg">
+              Admin
+            </a>
+            <button onClick={scrollToTop} aria-label="Back to top" className="flex items-center gap-2 text-sm text-muted-dark hover:text-primary-dark transition-colors">
+              Back to top <FiArrowUp size={16} />
+            </button>
+          </div>
         </div>
       </Container>
     </footer>

@@ -62,7 +62,7 @@ function AboutSection() {
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
           custom={0.2}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-6"
+          className="grid grid-cols-3 gap-3 sm:gap-6"
         >
           {stats.map((stat) => (
             <div

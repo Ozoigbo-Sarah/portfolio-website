@@ -1,6 +1,9 @@
+import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import ScrollProgress from './components/ScrollProgress'
+import LoadingScreen from './components/LoadingScreen'
 import HeroSection from './sections/HeroSection'
 import AboutSection from './sections/AboutSection'
 import SkillsSection from './sections/SkillsSection'
@@ -21,6 +24,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 function HomePage() {
   return (
     <>
+      <ScrollProgress />
       <Navbar />
       <HeroSection />
       <AboutSection />
@@ -36,8 +40,16 @@ function HomePage() {
 }
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1200)
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <div className="min-h-screen bg-bg-light dark:bg-bg-dark text-text-light dark:text-text-dark transition-colors">
+      <LoadingScreen isLoading={isLoading} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/admin/login" element={<AdminLogin />} />
