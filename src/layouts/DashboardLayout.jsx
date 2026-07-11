@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { FiGrid, FiFolder, FiMail, FiLogOut, FiMenu, FiX } from 'react-icons/fi'
+import { FiGrid, FiFolder, FiMail, FiAward, FiBriefcase, FiStar, FiLogOut, FiMenu, FiX } from 'react-icons/fi'
 import { useAuth } from '../context/AuthContext'
 
 const navItems = [
   { name: 'Dashboard', path: '/admin/dashboard', icon: <FiGrid size={18} /> },
   { name: 'Projects', path: '/admin/projects', icon: <FiFolder size={18} /> },
+  { name: 'Skills', path: '/admin/skills', icon: <FiAward size={18} /> },
+  { name: 'Services', path: '/admin/services', icon: <FiBriefcase size={18} /> },
+  { name: 'Testimonials', path: '/admin/testimonials', icon: <FiStar size={18} /> },
   { name: 'Messages', path: '/admin/messages', icon: <FiMail size={18} /> },
 ]
 
