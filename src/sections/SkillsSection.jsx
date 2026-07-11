@@ -1,34 +1,17 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import {
-  FiCode,
-  FiServer,
-  FiCpu,
-  FiTool,
-} from 'react-icons/fi'
+import { FiCode, FiServer, FiCpu, FiTool } from 'react-icons/fi'
 import Section from '../components/Section'
+import api from '../services/api'
 
-const skillCategories = [
-  {
-    title: 'Frontend',
-    icon: <FiCode size={22} />,
-    skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Tailwind CSS', 'Responsive Design'],
-  },
-  {
-    title: 'Backend',
-    icon: <FiServer size={22} />,
-    skills: ['Node.js', 'Express.js', 'MongoDB', 'REST APIs', 'Mongoose'],
-  },
-  {
-    title: 'AI and Machine Learning',
-    icon: <FiCpu size={22} />,
-    skills: ['Python', 'Pandas', 'Scikit-learn', 'Prompt Engineering', 'OpenAI API'],
-  },
-  {
-    title: 'Tools',
-    icon: <FiTool size={22} />,
-    skills: ['Git', 'GitHub', 'VS Code', 'Postman'],
-  },
-]
+const categoryIcons = {
+  'Frontend': <FiCode size={22} />,
+  'Backend': <FiServer size={22} />,
+  'AI and Machine Learning': <FiCpu size={22} />,
+  'Tools': <FiTool size={22} />,
+}
+
+const categoryOrder = ['Frontend', 'Backend', 'AI and Machine Learning', 'Tools']
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -40,6 +23,31 @@ const fadeUp = {
 }
 
 function SkillsSection() {
+  const [skills, setSkills] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        const res = await api.get('/skills')
+        setSkills(res.data.data)
+      } catch (err) {
+        console.error('Failed to load skills')
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchSkills()
+  }, [])
+
+  const groupedSkills = categoryOrder
+    .map((cat) => ({
+      title: cat,
+      icon: categoryIcons[cat],
+      skills: skills.filter((s) => s.category === cat).map((s) => s.name),
+    }))
+    .filter((group) => group.skills.length > 0)
+
   return (
     <Section id="skills">
       <motion.div
@@ -58,36 +66,42 @@ function SkillsSection() {
         </h2>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {skillCategories.map((category, index) => (
-          <motion.div
-            key={category.title}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={fadeUp}
-            custom={index * 0.1}
-            className="p-6 rounded-2xl bg-surface-light dark:bg-surface-dark shadow-md hover:shadow-xl hover:-translate-y-1 transition-all"
-          >
-            <div className="flex items-center gap-3 mb-4 text-primary dark:text-primary-dark">
-              {category.icon}
-              <h3 className="text-lg font-bold text-text-light dark:text-text-dark">
-                {category.title}
-              </h3>
-            </div>
-            <ul className="flex flex-col gap-2">
-              {category.skills.map((skill) => (
-                <li
-                  key={skill}
-                  className="text-sm text-muted-light dark:text-muted-dark px-3 py-1.5 rounded-lg bg-bg-light dark:bg-bg-dark"
-                >
-                  {skill}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        ))}
-      </div>
+      {loading ? (
+        <p className="text-center text-muted-light dark:text-muted-dark">Loading skills...</p>
+      ) : groupedSkills.length === 0 ? (
+        <p className="text-center text-muted-light dark:text-muted-dark">No skills added yet.</p>
+      ) : (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {groupedSkills.map((category, index) => (
+            <motion.div
+              key={category.title}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeUp}
+              custom={index * 0.1}
+              className="p-6 rounded-2xl bg-surface-light dark:bg-surface-dark shadow-md hover:shadow-xl hover:-translate-y-1 transition-all"
+            >
+              <div className="flex items-center gap-3 mb-4 text-primary dark:text-primary-dark">
+                {category.icon}
+                <h3 className="text-lg font-bold text-text-light dark:text-text-dark">
+                  {category.title}
+                </h3>
+              </div>
+              <ul className="flex flex-col gap-2">
+                {category.skills.map((skill) => (
+                  <li
+                    key={skill}
+                    className="text-sm text-muted-light dark:text-muted-dark px-3 py-1.5 rounded-lg bg-bg-light dark:bg-bg-dark"
+                  >
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      )}
     </Section>
   )
 }

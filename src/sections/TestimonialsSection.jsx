@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { FaQuoteLeft } from 'react-icons/fa'
 import Section from '../components/Section'
-import { testimonials } from '../data/testimonials'
+import api from '../services/api'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -15,14 +15,31 @@ const fadeUp = {
 }
 
 function TestimonialsSection() {
+  const [testimonials, setTestimonials] = useState([])
+  const [loading, setLoading] = useState(true)
   const [current, setCurrent] = useState(0)
 
   useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const res = await api.get('/testimonials')
+        setTestimonials(res.data.data)
+      } catch (err) {
+        console.error('Failed to load testimonials')
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchTestimonials()
+  }, [])
+
+  useEffect(() => {
+    if (testimonials.length === 0) return
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % testimonials.length)
     }, 5000)
     return () => clearInterval(interval)
-  }, [])
+  }, [testimonials])
 
   const goToPrev = () => {
     setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)
@@ -30,6 +47,22 @@ function TestimonialsSection() {
 
   const goToNext = () => {
     setCurrent((prev) => (prev + 1) % testimonials.length)
+  }
+
+  if (loading) {
+    return (
+      <Section id="testimonials" className="bg-surface-light dark:bg-surface-dark">
+        <p className="text-center text-muted-light dark:text-muted-dark">Loading testimonials...</p>
+      </Section>
+    )
+  }
+
+  if (testimonials.length === 0) {
+    return (
+      <Section id="testimonials" className="bg-surface-light dark:bg-surface-dark">
+        <p className="text-center text-muted-light dark:text-muted-dark">No testimonials yet.</p>
+      </Section>
+    )
   }
 
   const testimonial = testimonials[current]
@@ -58,7 +91,7 @@ function TestimonialsSection() {
         <div className="relative min-h-[220px] flex items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.div
-              key={testimonial.id}
+              key={testimonial._id}
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -40 }}
@@ -87,7 +120,7 @@ function TestimonialsSection() {
           <div className="flex gap-2">
             {testimonials.map((t, index) => (
               <button
-                key={t.id}
+                key={t._id}
                 onClick={() => setCurrent(index)}
                 aria-label={`Go to testimonial ${index + 1}`}
                 className={`w-2.5 h-2.5 rounded-full transition-colors ${
