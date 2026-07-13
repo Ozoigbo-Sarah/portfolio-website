@@ -21,12 +21,9 @@ function HeroSection() {
 
       <Container className="relative grid md:grid-cols-2 gap-10 md:gap-12 items-center">
         <div className="flex flex-col gap-4 sm:gap-6 text-center md:text-left order-2 md:order-1">
-          <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0} className="flex items-center gap-2 justify-center md:justify-start">
-            <span className="w-8 h-px bg-primary dark:bg-primary-dark" />
-            <p className="text-primary dark:text-primary-dark font-semibold tracking-widest text-xs sm:text-sm uppercase">
-              Full Stack Developer
-            </p>
-          </motion.div>
+          <motion.p variants={fadeUp} initial="hidden" animate="visible" custom={0} className="text-primary dark:text-primary-dark font-semibold tracking-widest text-xs sm:text-sm uppercase">
+  Full Stack Developer
+</motion.p>
 
           <motion.h1 variants={fadeUp} initial="hidden" animate="visible" custom={0.1} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight">
             Ozoigbo Sarah
