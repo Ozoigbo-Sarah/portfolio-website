@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { FiGrid, FiFolder, FiMail, FiAward, FiBriefcase, FiStar, FiLogOut, FiMenu, FiX } from 'react-icons/fi'
+import { FiGrid, FiFolder, FiMail, FiAward, FiBriefcase, FiStar, FiLogOut, FiMenu, FiX, FiExternalLink } from 'react-icons/fi'
 import { useAuth } from '../context/AuthContext'
 
 const navItems = [
@@ -61,6 +61,10 @@ function DashboardLayout({ children }) {
           <p className="text-xs text-muted-light dark:text-muted-dark px-4 mb-2">
             {admin?.email}
           </p>
+          <a href="/" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-muted-light dark:text-muted-dark hover:bg-primary/10 transition-colors w-full">
+            <FiExternalLink size={18} />
+            View Site
+          </a>
           <button
             onClick={handleLogout}
             className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-red-500 hover:bg-red-500/10 transition-colors w-full"

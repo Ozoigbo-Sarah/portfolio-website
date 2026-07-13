@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { FiDownload, FiMail, FiArrowRight, FiArrowDown } from 'react-icons/fi'
 import Button from '../components/Button'
 import Container from '../components/Container'
-
+import profileImage from '../assets/profile.jpeg'
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: (delay = 0) => ({
@@ -64,7 +64,7 @@ function HeroSection() {
             <div className="absolute -inset-3 bg-gradient-to-tr from-primary to-accent dark:from-primary-dark dark:to-accent-dark rounded-[40%_60%_60%_40%/60%_40%_60%_40%] blur-2xl opacity-30 animate-[spin_20s_linear_infinite]" />
             <div className="absolute inset-0 rounded-[40%_60%_60%_40%/60%_40%_60%_40%] border-2 border-primary/30 dark:border-primary-dark/30" />
             <img
-              src="https://api.dicebear.com/9.x/notionists/svg?seed=Portfolio"
+              src={profileImage}
               alt="Ozoigbo Sarah - Full Stack Developer"
               className="relative w-full h-full object-cover rounded-[40%_60%_60%_40%/60%_40%_60%_40%] border-4 border-surface-light dark:border-surface-dark shadow-2xl"
             />
