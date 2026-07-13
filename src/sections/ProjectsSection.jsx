@@ -62,9 +62,9 @@ function ProjectsSection() {
         className="text-center mb-10"
       >
         <p className="text-primary dark:text-primary-dark font-semibold tracking-widest text-xs uppercase mb-3">
-  Portfolio
-</p>
-<h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Featured Projects</h2>
+          Portfolio
+        </p>
+        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Featured Projects</h2>
       </motion.div>
 
       <motion.div
@@ -80,7 +80,7 @@ function ProjectsSection() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
                 activeCategory === cat
                   ? 'bg-primary dark:bg-primary-dark text-white'
                   : 'bg-surface-light dark:bg-surface-dark text-muted-light dark:text-muted-dark hover:bg-primary/10'
@@ -113,7 +113,7 @@ function ProjectsSection() {
       ) : error ? (
         <p className="text-center text-red-500">{error}</p>
       ) : filteredProjects.length > 0 ? (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {filteredProjects.map((project, index) => (
             <ProjectCard key={project._id} project={project} index={index} />
           ))}
