@@ -58,12 +58,12 @@ function SkillsSection() {
         custom={0}
         className="text-center mb-14"
       >
-        <p className="text-primary dark:text-primary-dark font-semibold tracking-wide mb-2">
-          Skills
-        </p>
-        <h2 className="text-3xl md:text-4xl font-bold">
-          Technologies I work with
-        </h2>
+        <p className="text-primary dark:text-primary-dark font-semibold tracking-widest text-xs uppercase mb-3">
+  Skills
+</p>
+<h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+  Technologies I work with
+</h2>
       </motion.div>
 
       {loading ? (

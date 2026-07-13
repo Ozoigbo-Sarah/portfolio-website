@@ -61,10 +61,10 @@ function ProjectsSection() {
         custom={0}
         className="text-center mb-10"
       >
-        <p className="text-primary dark:text-primary-dark font-semibold tracking-wide mb-2">
-          Portfolio
-        </p>
-        <h2 className="text-3xl md:text-4xl font-bold">Featured Projects</h2>
+        <p className="text-primary dark:text-primary-dark font-semibold tracking-widest text-xs uppercase mb-3">
+  Portfolio
+</p>
+<h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Featured Projects</h2>
       </motion.div>
 
       <motion.div

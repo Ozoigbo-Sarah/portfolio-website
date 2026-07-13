@@ -57,12 +57,12 @@ function ServicesSection() {
         custom={0}
         className="text-center mb-14"
       >
-        <p className="text-primary dark:text-primary-dark font-semibold tracking-wide mb-2">
-          Services
-        </p>
-        <h2 className="text-3xl md:text-4xl font-bold">
-          What I can do for you
-        </h2>
+       <p className="text-primary dark:text-primary-dark font-semibold tracking-widest text-xs uppercase mb-3">
+  Services
+</p>
+<h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+  What I can do for you
+</h2>
       </motion.div>
 
       {loading ? (

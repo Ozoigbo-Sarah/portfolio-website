@@ -23,12 +23,12 @@ function TimelineSection() {
         custom={0}
         className="text-center mb-16"
       >
-        <p className="text-primary dark:text-primary-dark font-semibold tracking-wide mb-2">
-          My Journey
-        </p>
-        <h2 className="text-3xl md:text-4xl font-bold">
-          Education and Growth
-        </h2>
+       <p className="text-primary dark:text-primary-dark font-semibold tracking-widest text-xs uppercase mb-3">
+  My Journey
+</p>
+<h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+  Education and Growth
+</h2>
       </motion.div>
 
       <div className="relative max-w-2xl mx-auto">
