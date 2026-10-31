@@ -4,6 +4,7 @@ import { FiMail, FiPhone, FiMapPin, FiLinkedin, FiGithub, FiSend } from 'react-i
 import Section from '../components/Section'
 import Button from '../components/Button'
 import { contactInfo } from '../data/contactInfo'
+import { API_URL } from '../services/api'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -48,24 +49,24 @@ function ContactSection() {
 
     if (Object.keys(validationErrors).length > 0) return
 
-   setStatus('sending')
+    setStatus('sending')
 
-try {
-  const response = await fetch('http://localhost:5000/api/contact', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(formData),
-  })
+    try {
+      const response = await fetch(`${API_URL}/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
 
-  if (!response.ok) {
-    throw new Error('Failed to send message')
-  }
+      if (!response.ok) {
+        throw new Error('Failed to send message')
+      }
 
-  setStatus('success')
-  setFormData({ name: '', email: '', subject: '', message: '' })
-} catch (error) {
-  setStatus('error')
-}
+      setStatus('success')
+      setFormData({ name: '', email: '', subject: '', message: '' })
+    } catch (error) {
+      setStatus('error')
+    }
   }
 
   return (
@@ -79,9 +80,9 @@ try {
         className="text-center mb-14"
       >
         <p className="text-primary dark:text-primary-dark font-semibold tracking-widest text-xs uppercase mb-3">
-  Contact
-</p>
-<h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Let's work together</h2>
+          Contact
+        </p>
+        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Let's work together</h2>
       </motion.div>
 
       <div className="grid md:grid-cols-2 gap-12">
